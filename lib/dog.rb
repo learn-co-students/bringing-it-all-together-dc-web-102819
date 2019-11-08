@@ -57,17 +57,14 @@ class Dog
     end
 
     def update
-        if self.id 
-            sql = <<-SQL
-                UPDATE dogs 
-                SET name = ?, breed = ?
-                WHERE id = ?;
-                SQL
-            DB[:conn].execute(sql, self.name, self.breed, self.id)
-        else
-
-        end
+        sql = <<-SQL
+            UPDATE dogs 
+            SET name = ?, breed = ?
+            WHERE id = ?;
+            SQL
+        DB[:conn].execute(sql, self.name, self.breed, self.id)
     end
+
     def self.new_from_db(dog_data)
         dog_hash = {
             id: dog_data[0],
